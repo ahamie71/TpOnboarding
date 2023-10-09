@@ -45,9 +45,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-4">
-                        <img src="lunette1.jpg" alt="Lunette 1" class="card-img-top">
+                        <img src="/public//images/lunette1.jpg" alt="Lunette 1" class="card-img-top">
                         <div class="card-body">
-                            <h3 class="card-title">Lunette de Soleil 1</h3>
+                            <h3 class="card-title">Lunette de Vue 1</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             <a href="#" class="btn btn-primary">Acheter maintenant</a>
                         </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card mb-4">
-                        <img src="lunette2.jpg" alt="Lunette 2" class="card-img-top">
+                        <img src="/public//images/lunette2.jpg" alt="Lunette 2" class="card-img-top">
                         <div class="card-body">
                             <h3 class="card-title">Lunette de Vue 2</h3>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
