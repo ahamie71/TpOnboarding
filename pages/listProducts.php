@@ -1,6 +1,3 @@
-<?php
-include '../include/navbar.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +5,7 @@ include '../include/navbar.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Add Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -20,12 +18,35 @@ include '../include/navbar.php';
 <body>
     <!-- Include your navigation bar -->
     
-   
 
+
+    <div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-primary mb-3" href="index.php">
+                <i class="fas fa-arrow-left"></i> Revenir à la page d'accueil
+            </button>
+            <div id="nombre-produits" class="float-right mb-3"></div>
+
+
+            <button id="toggle-mode" class="btn btn-secondary float-right ml-auto mr-2">
+           Changer de mode
+          </button>
+
+        </div>
+    </div>
+</div>
+
+     
+
+
+
+   
     <h1 class="text-center mt-4">Liste de Lunettes</h1>
     <div class="container mt-2">
     <input type="text" id="searchInput" class="form-control" placeholder="Rechercher par nom...">
 </div>
+
 
     <div class="container mt-2">
         <button onclick="sortCards('name', 'asc')" class="btn btn-dark">Trier par Nom (Croissant)</button>
@@ -35,10 +56,12 @@ include '../include/navbar.php';
     </div>
 
 
+
     <div class="container mt-4">
         <div class="row" id="glassesContainer">
           
-                <div class="col-md-4 mb-4">
+
+                <div class="col-md-4 mb-4 product-card">
                     <div class="card">
                         <img src="../public/images/lunette1.jpg"  style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 1">
                         <div class="card-body">
@@ -47,7 +70,7 @@ include '../include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 product-card">
                     <div class="card">
                         <img src="../public/images/lunette2.png" style="width: 300px; height: 200px;"  class="card-img-top" alt="Lunette 2">
                         <div class="card-body">
@@ -56,7 +79,7 @@ include '../include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 product-card">
                     <div class="card">
                         <img src="../public/images/lunette3.jpg"  style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 3">
                         <div class="card-body">
@@ -65,7 +88,7 @@ include '../include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 product-card">
                     <div class="card">
                         <img src="../public/images/lunette8.png" style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 3">
                         <div class="card-body">
@@ -74,7 +97,7 @@ include '../include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 product-card">
                     <div class="card">
                         <img src="../public/images/lunette6.jpg" style="width: 300px; height: 200px;"class="card-img-top" alt="Lunette 3">
                         <div class="card-body">
@@ -83,7 +106,7 @@ include '../include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 product-card">
                     <div class="card">
                         <img src="../public/images/lunette90.png" style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 3">
                         <div class="card-body">
@@ -93,45 +116,44 @@ include '../include/navbar.php';
                     </div>
                 </div>
 
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../public/images/lunette90.png" style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Lunettes vertes </h5>
-                            <p class="card-text">Prix : 834.99 €</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../public/images/lunette90.png" style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Lunettes vertes </h5>
-                            <p class="card-text">Prix : 834.99 €</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../public/images/lunette90.png" style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Lunettes vertes </h5>
-                            <p class="card-text">Prix : 834.99 €</p>
-                        </div>
-                    </div>
-                </div>
+                
               
+                
                 <!-- Add more cards here -->
             
         </div>
     </div>
-
+  
     <!-- Include your JavaScript libraries, such as Bootstrap and jQuery, here -->
 
+
+
     <script src="../public/js/listproduct.js">
-   
+      
     </script>
 
+
+
 </body>
+
+<style>
+ /* styles.css */
+
+/* Styles pour le mode sombre */
+body.dark-mode {
+    background-color: #333; /* Fond sombre */
+    color: #fff; /* Texte clair */
+}
+
+/* Autres styles spécifiques au mode sombre */
+.card.dark-mode {
+    background-color: #444; /* Fond sombre pour les cartes */
+    color: #fff; /* Texte clair pour les cartes */
+}
+
+/* Ajoutez d'autres styles selon vos besoins */
+
+</style>
+
 </html>
 
