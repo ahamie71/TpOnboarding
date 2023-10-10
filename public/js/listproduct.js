@@ -1,3 +1,4 @@
+// trier les produits par nom et prix ordres croissants et ordre decroissant
 function sortCards(attribute, order) {
     const cards = Array.from(document.querySelectorAll('.col-md-4'));
 
@@ -33,6 +34,7 @@ function sortCards(attribute, order) {
 
     
 }
+// rechercher par nom les produits
 function filterCards() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const cards = Array.from(document.querySelectorAll('.col-md-4'));
@@ -48,3 +50,21 @@ function filterCards() {
 }
 
 document.getElementById('searchInput').addEventListener('input', filterCards);
+
+
+// afficher les nnombres de produits sur la page listproducts
+var productCards = document.querySelectorAll('.product-card');
+var numberOfProducts = productCards.length;
+var nombreProduitsDiv = document.getElementById('nombre-produits');
+nombreProduitsDiv.innerHTML = '<strong>Nombre de produits :</strong> ' + numberOfProducts;
+
+// dark mode
+// JavaScript pour la bascule du mode sombre
+const toggleModeButton = document.getElementById('toggle-mode');
+const body = document.body;
+
+toggleModeButton.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+});
+
+
