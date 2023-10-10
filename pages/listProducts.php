@@ -2,6 +2,9 @@
 include '../include/navbar.php';
 ?>
 
+    
+<link rel="stylesheet" href="../public/css/listproducts.css">
+ 
 <body>
     <!-- Include your navigation bar -->
     
