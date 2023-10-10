@@ -63,7 +63,7 @@
 
                 <div class="col-md-4 mb-4 product-card">
                     <div class="card">
-                        <img src="../public/images/lunette1.jpg"  style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 1">
+                        <img src="../public/images/lunet1.jpg"  style="width: 300px; height: 200px;" class="card-img-top" alt="Lunette 1">
                         <div class="card-body">
                             <h5 class="card-title">Lunettes de soleil</h5>
                             <p class="card-text">Prix : 49.99 €</p>
