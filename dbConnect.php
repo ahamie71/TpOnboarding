@@ -3,7 +3,7 @@ function databaseConnect(){
 
     $username = "root";
     $servername = "localhost";
-    $password = "password";
+    $password = "root";
     
     try {
         $dbconnect = new PDO("mysql:host=$servername;dbname=lunettes", $username, $password);
@@ -14,3 +14,5 @@ function databaseConnect(){
         echo "Connection failed: " . $e->getMessage();
     }
 }
+
+
