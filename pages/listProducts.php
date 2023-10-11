@@ -127,10 +127,8 @@
 
 
     <?php
-    
     include '../include/footer.php';
-
-  ?>
+     ?>
 
     <script src="../public/js/listproduct.js">
       
