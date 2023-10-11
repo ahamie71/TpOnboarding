@@ -1,5 +1,53 @@
-*, ::before,::after{
+*,
+::before,
+::after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: var(--font-primary);
+}
+
+:root {
+    --primary-color: #0d1321;
+    --primary-color-green: #c5d86d;
+    --secondary-color-blue: #a9cef4;
+    --font-primary: "Roboto";
+}
+
+/* ------------------------------------------------- MAIN ------------------------------------------- */
+
+h1,
+h2 {
+    color: var(--primary-color);
+}
+
+.btn-success {
+    background-color: var(--secondary-color-blue);
+}
+.btn-success:hover {
+    color: var(--secondary-color-green);
+}
+
+.btn-link {
+    text-decoration: none;
+    color: var(--secondary-color-blue);
+}
+.btn-link:hover {
+    color: var(--secondary-color-green);
+}
+
+/* ------------------------------------------------- NAVBAR ------------------------------------------- */
+
+.navbar-custom {
+    background-color: var(--secondary-color-blue);
+}
+
+.logoNav {
+    width: 75px;
+}
+
+/* ------------------------------------------------- CONTAINER ------------------------------------------- */
+
+.container {
+    min-height: 100vh;
 }
