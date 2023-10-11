@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,28 +12,24 @@
     <!-- Add Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
-<body>
-    
-</body>
-</html>
+
+
  
 <body>
     <!-- Include your navigation bar -->
-    
-
+      
+    <?php
+    include '../include/navbar.php';
+  ?>
 
     <div class="container mt-4">
     <div class="row">
         <div class="col-12">
-            <button type="button" class="btn btn-primary mb-3" href="index.php">
-                <i class="fas fa-arrow-left"></i> Revenir à la page d'accueil
-            </button>
+            
             <div id="nombre-produits" class="float-right mb-3"></div>
 
 
-            <button id="toggle-mode" class="btn btn-secondary float-right ml-auto mr-2">
-           Changer de mode
-          </button>
+         
 
         </div>
     </div>
@@ -127,6 +125,12 @@
     <!-- Include your JavaScript libraries, such as Bootstrap and jQuery, here -->
 
 
+
+    <?php
+    
+    include '../include/footer.php';
+
+  ?>
 
     <script src="../public/js/listproduct.js">
       
