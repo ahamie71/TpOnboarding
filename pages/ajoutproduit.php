@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+
+if(!isset($_SESSION['user'])){
+    header('Location:auth_login.php'); 
+}
 include '../dbConnect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -6,15 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST["price"];
     $description = $_POST["description"];
     $image = $_FILES["image"];
-    $user_id= 1;
+
     $imagePath = ''; 
     if ($image && $image["error"] == 0) {
         $imagePath = '../public/images/' . $image["name"];
         move_uploaded_file($image["tmp_name"], $imagePath);
     }
     $db = databaseConnect();
-    $req = "INSERT INTO products (name, price, description, image,fk_user) VALUES (?, ?, ?, ?,?)";
+    $req = "INSERT INTO products (name, price, description, image, fk_user) VALUES (?, ?, ?, ?, ?)";
     $stmt = $db->prepare($req);
+    $user_id = $_SESSION['user']['id'];
     $stmt->execute([$name, $price, $description, $imagePath, $user_id]);
     header("Location:listProducts.php");
     exit;
