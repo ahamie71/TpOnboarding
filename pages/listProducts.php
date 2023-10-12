@@ -39,15 +39,12 @@ $numberOfProducts = count($products);
         <input type="text" id="searchInput" class="form-control" placeholder="Rechercher par nom...">
     </div>
     <div class="container mt-2">
-
-    <div class="container mt-2">
-<button onclick="sortAndDisplay('name', 'asc')" class="btn btn-dark">Trier par Nom (Croissant)</button>
-<button onclick="sortAndDisplay('name', 'desc')" class="btn btn-dark">Trier par Nom (Décroissant)</button>
-<button onclick="sortAndDisplay('price', 'asc')" class="btn btn-dark">Trier par Prix (Croissant)</button>
-<button onclick="sortAndDisplay('price', 'desc')" class="btn btn-dark">Trier par Prix (Décroissant)</button>
-
-    </div>
-        <!-- Sorting buttons here -->
+        <div class="container mt-2">
+            <button onclick="sortAndDisplay('name', 'asc')" class="btn btn-dark">Trier par Nom (Croissant)</button>
+            <button onclick="sortAndDisplay('name', 'desc')" class="btn btn-dark">Trier par Nom (Décroissant)</button>
+            <button onclick="sortAndDisplay('price', 'asc')" class="btn btn-dark">Trier par Prix (Croissant)</button>
+            <button onclick="sortAndDisplay('price', 'desc')" class="btn btn-dark">Trier par Prix (Décroissant)</button>
+        </div>
     </div>
     <div class="container mt-4">
         <div class="row" id="glassesContainer">
@@ -55,12 +52,12 @@ $numberOfProducts = count($products);
             foreach ($products as $product) {
                 echo '<div class="col-md-4 mb-4 product-card">';
                 echo '<div class="card">';
-                echo '<img src="../images/' . $product['image']. '" ;" class="card-img-top" alt="' . $product['name'] . '">';
+                echo '<img src="../images/' . $product['image'] . '" ;" class="card-img-top" alt="' . $product['name'] . '">';
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . $product['name'] . '</h5>';
                 echo '<p class="card-text">Prix : ' . $product['price'] . ' €</p>';
                 echo '<button onclick="toggleDescription(this)" class="btn btn-dark">Afficher la description</button>';
-                echo '<p class="product-description" style="display: none;">' . $product['description'].'</p>';
+                echo '<p class="product-description" style="display: none;">' . $product['description'] . '</p>';
 
                 echo '</div>';
                 echo '</div>';
@@ -74,11 +71,9 @@ $numberOfProducts = count($products);
     ?>
     <script src="../public/js/listproduct.js"></script>
 <script>
-
-  
 var products = <?php echo json_encode($products); ?>;
-
     function searchProductsByName() {
+  
         var searchInput = document.getElementById('searchInput');
         var searchTerm = searchInput.value.toLowerCase();
 
@@ -88,9 +83,9 @@ var products = <?php echo json_encode($products); ?>;
 
         displayFilteredProducts(filteredProducts);
     }
-
-    // Fonction pour trier les produits
+  
 function sortAndDisplay(property, order) {
+  
     products.sort((a, b) => {
         if (order === 'asc') {
             return a[property] > b[property] ? 1 : -1;
@@ -101,16 +96,14 @@ function sortAndDisplay(property, order) {
 
     displaySortedProducts();
 }
+        function displaySortedProducts() {
 
-// Fonction pour afficher les produits triés
-function displaySortedProducts() {
-    const container = document.getElementById('glassesContainer');
-    container.innerHTML = '';
-
-    products.forEach((product) => {
-        const card = document.createElement('div');
-        card.className = 'col-md-4 mb-4 product-card';
-        card.innerHTML = `
+            const container = document.getElementById('glassesContainer');
+            container.innerHTML = '';
+            products.forEach((product) => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4 mb-4 product-card';
+                card.innerHTML = `
             <div class="card">
                 <img src="../images/${product.image}" class="card-img-top" alt="${product.name}">
                 <div class="card-body">
@@ -119,6 +112,24 @@ function displaySortedProducts() {
                 </div>
             </div>
         `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function toggleDescription(button) {
+            
+            const description = button.nextElementSibling;
+            if (description.style.display === 'none' || description.style.display === '') {
+                description.style.display = 'block';
+                button.textContent = 'Masquer la description';
+            } else {
+                description.style.display = 'none';
+                button.textContent = 'Afficher la description';
+            }
+        }
+    </script>
+
         container.appendChild(card);
     });
 }
@@ -161,15 +172,18 @@ searchInput.addEventListener('input', function() {
 </script>
 </body>
 <style>
-  
     body.dark-mode {
         background-color: #333;
-        color: #fff;  
+        color: #fff;
     }
+
     .card.dark-mode {
         background-color: #444;
         color: #fff;
     }
+    .modal-dialog {
+        max-width: 800px;
+
         .modal-dialog {
             max-width: 800px;
         }
