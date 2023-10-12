@@ -1,7 +1,9 @@
 <?php
+// SESSION START
+session_start();
 
 // Formulaire de connexion
-require_once './dbConnect.php';
+require_once '../dbConnect.php';
 $dbconnect = databaseConnect();
 const ERROR_REQUIRED = 'Veuillez renseigner ce champ';
 const ERROR_PASSWORD_MISMATCH = 'Le mot de passe n\'est pas valide';
@@ -14,7 +16,6 @@ $errors = [
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo "here";
     $input = filter_input_array(INPUT_POST, [
         'email' => FILTER_SANITIZE_EMAIL,
     ]);
@@ -29,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$password) {
         $errors['password'] = ERROR_REQUIRED;
     }
-    echo "here";
     if (empty(array_filter($errors, fn ($e) => $e !== ''))) {
         $statementUser = $dbconnect->prepare('SELECT * FROM users WHERE email=:email');
         $statementUser->bindParam(':email', $email);
@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $statementSession->execute();
                 $sessionId = $dbconnect->lastInsertId();
                 setcookie('session', $sessionId, time() + 60 * 60 * 24 * 14, '', '', false, true);
+                $_SESSION['user'] = $user;
                 header('Location: /');
             }
         }
@@ -68,12 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <?php
-    include './include/navbar.php';
-    ?>
+    <button class="back-home"><a href="../index.php">Retour à l'accueil</a></button>
     <div class="container" id="container">
         <div class="form-container sign-in-container">
-            <form action="/auth_login.php" method="post">
+            <form action="auth_login.php" method="post">
                 <h1>Se connecter</h1>
                 <input type="email" placeholder="Email" name="email" />
                 <?php if ($errors['email']) : ?>
@@ -90,17 +89,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
+                    <h1>Ravi de vous revoir !</h1>
+                    <p>Pour rester en contact avec nous, veuillez vous connecter en utilisant vos informations personnelles.</p>
                     <button class="ghost" id="signIn">Se connecter</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <a href="/pages/user.php"><button class="ghost" id="signIn">S'inscrire</button>
+                    <h1>Bonjour !</h1>
+                    <p>Saisissez vos informations personnelles et commencez votre voyage avec nous.</p>
+                    <a href="/pages/auth_signin.php"><button class="ghost" id="signIn">S'inscrire</button>
                 </div>
             </div>
         </div>
     </div>
     <script src="../public/js/forms.js"></script>
 </body>
+
+</html>

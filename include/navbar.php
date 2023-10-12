@@ -8,7 +8,7 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/">Accueil</a>
         <a class="nav-link" href="../pages/listProducts.php">Nos Produits</a>
-        <a class="nav-link" href="../pages/user.php">Connexion/Inscription</a>
+        <a class="nav-link" href="../pages/auth_signin.php">Connexion/Inscription</a>
       </div>
     </div>
   </div>
