@@ -3,6 +3,14 @@ if(!isset($_SESSION['user'])){
     header('Location:auth_login.php'); 
 }
 $user = $_SESSION['user'];
+$userID = $_SESSION['user']['id'];
+include '../dbConnect.php';
+$db = databaseConnect();
+$sql = "SELECT SUM(id) AS nbquant FROM quantity WHERE id_user = ?";
+$stmt = $db->prepare($sql);
+$stmt->execute([$userID]);
+$result = $stmt->fetch();
+$totalQuantity = $result['nbquant'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +28,7 @@ $user = $_SESSION['user'];
         <div class="row">
             <div class="col-lg-4">
                 <div class="card">
-                    <img src="/public/images/alexander-hipp-iEEBWgY_6lA-unsplash.jpg" class="card-img-top" alt="Image de profil">
+                    <img src="../public/images/alexander-hipp-iEEBWgY_6lA-unsplash.jpg" class="card-img-top" alt="Image de profil">
                     <div class="card-body">
                         <h5 class="card-title"><?= $user['name']?></h5>
                         <p class="card-text">Développeur Web</p>
@@ -36,6 +44,7 @@ $user = $_SESSION['user'];
                         <h5 class="card-title">Informations Personnelles</h5>
                         <p class="card-text">Nom: <?= $user['name']?></p>
                         <p class="card-text">Email: <?= $user['email']?></p>
+                        <p class="card-text">produit <?= $result['nbquant'];?></p>
                         <p class="card-text">Téléphone: (123) 456-7890</p>
                     </div>
                 </div>
