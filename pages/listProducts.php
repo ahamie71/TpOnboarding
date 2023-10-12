@@ -6,11 +6,10 @@ $req = "SELECT * FROM products";
 $stmt = $db->prepare($req);
 $stmt->execute();
 $products = $stmt->fetchAll();
+$numberOfProducts = count($products);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +18,6 @@ $products = $stmt->fetchAll();
     <!-- Add Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
-
 <body>
     <?php
     include '../include/navbar.php';
@@ -27,12 +25,17 @@ $products = $stmt->fetchAll();
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
-                <div id="nombre-produits" class="float-right mb-3"></div>
+            <div id="nombre-produits" class="float-right mb-3">Nombre de produits: <?php echo $numberOfProducts; ?></div>
             </div>
         </div>
     </div>
     <h1 class="text-center mt-4">Liste de Lunettes</h1>
     <div class="container mt-2">
+    <div class="button-container mb-2"  style="padding-bottom: 20px;">
+     <h1 style="padding-bottom: 20px;">Ajouter</h1>
+    <a href="ajoutproduit.php" class="custom-button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #1fdbbb;"></i></a>
+  </div>
+  <div class="container mt-2">
         <input type="text" id="searchInput" class="form-control" placeholder="Rechercher par nom...">
     </div>
     <div class="container mt-2">
@@ -67,21 +70,32 @@ $products = $stmt->fetchAll();
     include '../include/footer.php';
     ?>
     <script src="../public/js/listproduct.js"></script>
-    <script>
-        var products = <?php echo json_encode($products); ?>;
+<script>
+var products = <?php echo json_encode($products); ?>;
+    function searchProductsByName() {
+  
+        var searchInput = document.getElementById('searchInput');
+        var searchTerm = searchInput.value.toLowerCase();
 
-        function sortAndDisplay(property, order) {
+        var filteredProducts = products.filter(function(product) {
+            return product.name.toLowerCase().includes(searchTerm);
+        });
 
-            products.sort((a, b) => {
-                if (order === 'asc') {
-                    return a[property] > b[property] ? 1 : -1;
-                } else {
-                    return a[property] < b[property] ? 1 : -1;
-                }
-            });
-            displaySortedProducts();
+        displayFilteredProducts(filteredProducts);
+    }
+  
+function sortAndDisplay(property, order) {
+  
+    products.sort((a, b) => {
+        if (order === 'asc') {
+            return a[property] > b[property] ? 1 : -1;
+        } else {
+            return a[property] < b[property] ? 1 : -1;
         }
+    });
 
+    displaySortedProducts();
+}
         function displaySortedProducts() {
 
             const container = document.getElementById('glassesContainer');
@@ -98,6 +112,7 @@ $products = $stmt->fetchAll();
                 </div>
             </div>
         `;
+
                 container.appendChild(card);
             });
         }
@@ -114,6 +129,47 @@ $products = $stmt->fetchAll();
             }
         }
     </script>
+
+        container.appendChild(card);
+    });
+}
+
+function displayFilteredProducts(filteredProducts) {
+            const container = document.getElementById('glassesContainer');
+            container.innerHTML = '';
+            filteredProducts.forEach((product) => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4 mb-4 product-card';
+                card.innerHTML = `
+                    <div class="card">
+                        <img src="../images/${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">Prix : ${product.price} €</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    
+function toggleDescription(button) {
+    const description = button.nextElementSibling;
+    if (description.style.display === 'none' || description.style.display === '') {
+        description.style.display = 'block';
+        button.textContent = 'Masquer la description';
+    } else {
+        description.style.display = 'none';
+        button.textContent = 'Afficher la description';
+    }
+
+}
+
+var searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', function() {
+    searchProductsByName();
+});
+</script>
 </body>
 <style>
     body.dark-mode {
@@ -125,9 +181,18 @@ $products = $stmt->fetchAll();
         background-color: #444;
         color: #fff;
     }
-
     .modal-dialog {
         max-width: 800px;
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+
+        .button-container {
+       
+      
+      margin-left: 1000px;
+      float: left;
     }
 </style>
 
