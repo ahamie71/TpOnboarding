@@ -39,7 +39,6 @@
             </div>
         </div>
 
-
         <section class="container mt-5">
             <h2>Nos Produits Phares</h2>
             <div class="row">
