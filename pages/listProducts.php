@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user'])){
-    header('Location:auth_login.php'); 
-}
-
 include '../dbConnect.php';
 
 $db = databaseConnect();
