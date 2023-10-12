@@ -1,7 +1,8 @@
 <?php
-
+// Connexion à la base de données
 require_once "../dbConnect.php";
 
+// Formulaire d'inscription
 const ERROR_REQUIRED = 'Veuillez renseigner ce champ';
 const ERROR_TOO_SHORT = 'Ce champ est trop court';
 const ERROR_PASSWORD_TOO_SHORT = 'Le mot de passe doit faire au moins 6 caractères';
@@ -55,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		header('Location: /');
 	}
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<?php
 	include '../include/navbar.php';
 	?>
-	<div class="container" id="container">
+	<div class="container right-panel-active" id="container">
 		<div class="form-container sign-up-container">
 			<form action="" method="post">
 				<h1>Creer un compte</h1>
@@ -92,10 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
-			<form action="#">
+			<form action="/auth_login.php">
 				<h1>Se connecter</h1>
 				<input type="email" placeholder="Email" />
+				<?php if ($errors['email']) : ?>
+					<p class="text-danger"><?= $errors['email'] ?></p>
+				<?php endif; ?>
 				<input type="password" placeholder="Password" />
+				<?php if ($errors['email']) : ?>
+					<p class="text-danger"><?= $errors['password'] ?></p>
+				<?php endif; ?>
 				<a href="#">Mot de passe oublié ?</a>
 				<button>Se connecter</button>
 			</form>
@@ -105,12 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<div class="overlay-panel overlay-left">
 					<h1>Welcome Back!</h1>
 					<p>To keep connected with us please login with your personal info</p>
-					<button class="ghost" id="signIn">Sign In</button>
-				</div>
-				<div class="overlay-panel overlay-right">
-					<h1>Hello, Friend!</h1>
-					<p>Enter your personal details and start journey with us</p>
-					<button class="ghost" id="signUp">Sign Up</button>
+					<a href="../auth_login.php"><button class="ghost" id="signIn">Se connecter</button></a>
 				</div>
 			</div>
 		</div>
