@@ -53,18 +53,8 @@ document.getElementById('searchInput').addEventListener('input', filterCards);
 
 
 // afficher les nnombres de produits sur la page listproducts
-var productCards = document.querySelectorAll('.product-card');
-var numberOfProducts = productCards.length;
-var nombreProduitsDiv = document.getElementById('nombre-produits');
-nombreProduitsDiv.innerHTML = '<strong>Nombre de produits :</strong> ' + numberOfProducts;
 
 // dark mode
 // JavaScript pour la bascule du mode sombre
-const toggleModeButton = document.getElementById('toggle-mode');
-const body = document.body;
-
-toggleModeButton.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-});
 
 
