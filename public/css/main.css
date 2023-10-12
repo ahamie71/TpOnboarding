@@ -36,16 +36,6 @@ h2 {
     color: var(--secondary-color-green);
 }
 
-/* ------------------------------------------------- NAVBAR ------------------------------------------- */
-
-.navbar-custom {
-    background-color: var(--secondary-color-blue);
-}
-
-.logoNav {
-    width: 75px;
-}
-
 /* ------------------------------------------------- CONTAINER ------------------------------------------- */
 
 .container {

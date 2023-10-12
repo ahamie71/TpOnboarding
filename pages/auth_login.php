@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $sessionId = $dbconnect->lastInsertId();
                 setcookie('session', $sessionId, time() + 60 * 60 * 24 * 14, '', '', false, true);
                 $_SESSION['user'] = $user;
-                header('Location: /');
+                header('Location: profile.php');
             }
         }
     }
